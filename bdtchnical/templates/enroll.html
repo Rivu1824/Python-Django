@@ -1,0 +1,92 @@
+{% extends 'header-footer.html' %}
+{% load static %}
+{% block title %}bdtechnicalschools/enroll/course{% endblock title %}
+{% block content %}
+
+<main class="main-area fix">
+    {% if messages %}
+    <ul>
+      {% for message in messages %}
+      <li class="{% if message.tags %}alert {{ message.tags }}{% else %}text-info{% endif %}">
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- breadcrumb-area -->
+    <section class="breadcrumb__area breadcrumb__bg" data-background="{% static 'img/bg/breadcrumb_bg.jpg'%}">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb__content">
+                        <h3 class="title">Enrollment Here...</h3>
+                        <nav class="breadcrumb">
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="{% url 'home' %}">Home</a>
+                            </span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb__shape-wrap">
+            <img src="{% static 'img/others/breadcrumb_shape01.svg'%}" alt="img" class="alltuchtopdown">
+            <img src="{% static 'img/others/breadcrumb_shape02.svg'%}" alt="img" data-aos="fade-right" data-aos-delay="300">
+            <img src="{% static 'img/others/breadcrumb_shape03.svg'%}" alt="img" data-aos="fade-up" data-aos-delay="400">
+            <img src="{% static 'img/others/breadcrumb_shape04.svg'%}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
+            <img src="{% static 'img/others/breadcrumb_shape05.svg'%}" alt="img" data-aos="fade-left" data-aos-delay="400">
+        </div>
+    </section>
+    <!-- breadcrumb-area-end -->
+
+
+<section class="shop-details-area section-pt-120 section-pb-90">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-6">
+                <div class="shop-details-images-wrap d-flex gap-3">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                <a href="{{ enrolled_course.image.url }}" class="popup-image">
+                                    <img src="{{ enrolled_course.image.url }}" alt="{{ enrolled_course.title }}">
+                                </a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-6">
+                <div class="shop-details-content">
+                    <h2 class="title">{{ enrolled_course.title }}</h2>
+                    <h3 class="price">${{ enrolled_course.price }}</h3>
+                    {% if enrolled_course.discount_percentage %}
+                    <h3 class="discount price">$<del>{{ enrolled_course.discount_percentage }}</del></h3>
+                    {% endif %}
+                    <p>{{ enrolled_course.description }}</p>
+                    <div class="shop-details-qty">
+                        <a href="{% url 'create_transaction' course_id=enrolled_course.id %}" class="cart-btn btn">Process To Transaction</a>
+                    </div>
+                    <div class="shop-details-bottom">
+                        <ul class="list-wrap">
+                            <li class="sd-category">
+                                <span class="title">Categories:</span>
+                                {% for category in enrolled_course.categories.all %}
+                                    <a href="">{{ category.title }}</a>{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </li>
+                            <li class="sd-tag">
+                                <span class="title">Instructor:</span>
+                                <a href="{% url 'instructor-detail' pk=enrolled_course.instructor.id %}">{{ enrolled_course.instructor }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- shop-details-area-end -->
+
+</main>
+
+{% endblock content %}

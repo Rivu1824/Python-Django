@@ -1,0 +1,88 @@
+{% extends 'header-footer.html' %}
+{% load static %}
+{% block title %}bdtechnicalschools/registration{% endblock title %}
+
+{% block content %}
+<!-- singUp-area -->
+<main>
+
+        <!-- breadcrumb-area -->
+        <section class="breadcrumb__area breadcrumb__bg" data-background="{% static 'img/bg/breadcrumb_bg.jpg'%}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb__content">
+                            <h3 class="title">Registration Here...</h3>
+                            <nav class="breadcrumb">
+                                <span property="itemListElement" typeof="ListItem">
+                                    <a href="{% url 'home' %}">Home</a>
+                                </span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="breadcrumb__shape-wrap">
+                <img src="{% static 'img/others/breadcrumb_shape01.svg'%}" alt="img" class="alltuchtopdown">
+                <img src="{% static 'img/others/breadcrumb_shape02.svg'%}" alt="img" data-aos="fade-right" data-aos-delay="300">
+                <img src="{% static 'img/others/breadcrumb_shape03.svg'%}" alt="img" data-aos="fade-up" data-aos-delay="400">
+                <img src="{% static 'img/others/breadcrumb_shape04.svg'%}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
+                <img src="{% static 'img/others/breadcrumb_shape05.svg'%}" alt="img" data-aos="fade-left" data-aos-delay="400">
+            </div>
+        </section>
+        <!-- breadcrumb-area-end -->
+
+
+    <section class="signUp-area section-py-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="signUp-wrap">
+                        {% if messages %}
+                        <ul>
+                          {% for message in messages %}
+                          <li class="{% if message.tags %}alert {{ message.tags }}{% else %}text-info{% endif %}">
+                            {{ message }}
+                          </li>
+                          {% endfor %}
+                        </ul>
+                        {% endif %}
+                        <h2 class="title">Create Your Account</h2>
+                        <p>Hey there! Ready to join the party? We just need a few details from you to get <br> started. Let's do this!</p>
+                        <form action="{% url 'register' %}" method="post" class="account__form">
+                            {% csrf_token %}
+                            <div class="row gutter-20">
+                                <div class="form-grp">
+                                    <label for="username">Username</label>
+                                    <input type="text" name="username" id="username" placeholder="Enter your username">
+                                </div>
+                                <div class="form-grp">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" placeholder="Enter your email">
+                                </div>
+                                <div class="form-grp">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password1" id="password" placeholder="Password">
+                                </div>
+                                <div class="form-grp">
+                                    <label for="confirm-password">Confirm Password</label>
+                                    <input type="password" name="password2" id="confirm-password" placeholder="Confirm Password">
+                                </div>
+                                <!-- Include other necessary fields for registration -->
+                                <button type="submit" class="btn btn-two arrow-btn">Sign Up<img src="{% static 'img/icons/right_arrow.svg'%}" alt="img" class="injectable"></button>
+                            </div>
+                        </form>
+                        <div class="account__switch">
+                            <p>Already have an account?<a href="{% url 'login' %}">Login</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+        <!-- singUp-area-end -->
+
+    </main>
+    <!-- main-area-end -->
+    {% endblock content %}

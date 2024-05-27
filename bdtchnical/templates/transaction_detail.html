@@ -1,0 +1,19 @@
+{% extends 'header-footer.html' %}
+{% load static %}
+{% block title %}bdtechnicalschools/course-details{% endblock title %}
+
+{% block content %}
+<h1>Transaction Details</h1>
+
+<p><strong>Transaction ID:</strong> {{ transaction.transaction_id }}</p>
+<p><strong>User:</strong> {{ transaction.user.username }}</p>
+<p><strong>Course:</strong> {{ transaction.course.title }}</p>
+<p><strong>Amount:</strong> ${{ transaction.amount }}</p>
+<p><strong>First Name:</strong> {{ transaction.first_name }}</p>
+<p><strong>Last Name:</strong> {{ transaction.last_name }}</p>
+<p><strong>Mobile:</strong> {{ transaction.mobile }}</p>
+<p><strong>Address:</strong> {{ transaction.address }}</p>
+<p><strong>City:</strong> {{ transaction.city }}</p>
+<p><strong>Status:</strong> {{ transaction.get_payment_status_display }}</p>
+<p><strong>Timestamp:</strong> {{ transaction.timestamp }}</p>
+{% endblock content %}

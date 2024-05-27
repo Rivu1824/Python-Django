@@ -1,0 +1,149 @@
+{% extends 'header-footer.html' %}
+{% load static %}
+{% block title %}bdtechnicalschools/Checkout{% endblock title %}
+
+{% block content %}
+
+
+<main class="main-area fix">
+    <section class="breadcrumb__area breadcrumb__bg" data-background="{% static 'img/bg/breadcrumb_bg.jpg'%}">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb__content">
+                        <h3 class="title">Transaction Here...</h3>
+                        <nav class="breadcrumb">
+                            <span property="itemListElement" typeof="ListItem">
+                                <a href="{% url 'home' %}">Home</a>
+                            </span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="breadcrumb__shape-wrap">
+            <img src="{% static 'img/others/breadcrumb_shape01.svg'%}" alt="img" class="alltuchtopdown">
+            <img src="{% static 'img/others/breadcrumb_shape02.svg'%}" alt="img" data-aos="fade-right" data-aos-delay="300">
+            <img src="{% static 'img/others/breadcrumb_shape03.svg'%}" alt="img" data-aos="fade-up" data-aos-delay="400">
+            <img src="{% static 'img/others/breadcrumb_shape04.svg'%}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
+            <img src="{% static 'img/others/breadcrumb_shape05.svg'%}" alt="img" data-aos="fade-left" data-aos-delay="400">
+        </div>
+    </section>
+    
+    
+    <div class="container">
+    <div class="row billing-fields">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+            <div class="create-ac-content bg-light-gray padding-20px-all">
+                <div class="singUp-wrap">
+                    <h2 class="title">Complete checkout</h2>
+                    <p>Hey there! Ready to join the party? We just need a few details from you to get <br> started. Let's do this!</p>
+                    <form action="{% url 'create_transaction' course_id=enrolled_course.id %}" method="post" class="account__form">
+                        {% csrf_token %}
+                        <div class="row gutter-20">
+                            <div class="col-md-6">
+                                <div class="form-grp">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" id="first_name" name="first_name" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-grp">
+                                    <label for="last_name">Last name</label>
+                                    <input type="text" id="last_name" name="last_name" placeholder="Last Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-grp">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" placeholder="Address">
+                        </div>
+                        <div class="form-grp">
+                            <label for="mobile">Mobile</label>
+                            <input type="number" id="mobile" name="mobile" placeholder="Mobile">
+                        </div>
+                        <div class="form-grp">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="City">
+                        </div>
+                        <button type="submit" class="btn btn-two arrow-btn">checkout to Proccess<img src="{% static 'img/icons/right_arrow.svg'%}" alt="img" class="injectable"></button>
+                    </form>
+                </div>
+                        </div>
+                    </div>
+    
+    
+    
+    
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="your-order-payment">
+                    <div class="singUp-wrap">
+                    <div class="your-order">
+                        <h2 class="order-title mb-4">Your Course</h2>
+    
+                        <div class="table-responsive-sm order-table"> 
+                            <table class="bg-white table table-bordered table-hover text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="text-left">Course Title</th>
+                                        <th>Price</th>
+                                        <th>Discount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-left">{{ enrolled_course.title }}</td>
+                                        <td>${{ enrolled_course.price }}</td>
+                                        <td>{{ enrolled_course.discount_percentage }}%</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="font-weight-600">
+                                    <tr>
+                                        <td colspan="4" class="text-right">Discount</td>
+                                        <td>${{ enrolled_course.discount_percentage }}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="text-right">Total</td>
+                                        <td>${{ total_amount }}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+    
+    
+                    <div class="your-payment">
+                        <h2 class="payment-title mb-3">payment method</h2>
+                        <div class="payment-method">
+                            <div class="payment-accordion">
+                                <div id="accordion" class="payment-section">
+                                    <div class="card mb-2">
+                                        <div class="card-header">
+                                            <a class="card-link" data-toggle="collapse" href="#collapseOne">Direct Bank Transfer </a>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" data-parent="#accordion">
+                                            <div class="card-body">
+                                                <p class="no-margin font-15">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won't be shipped until the funds have cleared in our account.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </main>
+
+
+{% endblock content %}
+
+
+
+
+
+

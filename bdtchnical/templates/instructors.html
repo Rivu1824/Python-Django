@@ -1,0 +1,82 @@
+{% extends 'header-footer.html' %}
+{% load static %}
+{% block title %}bdtechnicalschools/instructors{% endblock title %}
+
+{% block content %}
+
+
+
+    <!-- main-area -->
+    <main class="main-area fix">
+
+        <!-- breadcrumb-area -->
+        <section class="breadcrumb__area breadcrumb__bg" data-background="{% static 'img/bg/breadcrumb_bg.jpg'%}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb__content">
+                            <h3 class="title">All Instructor</h3>
+                            <nav class="breadcrumb">
+                                <span property="itemListElement" typeof="ListItem">
+                                    <a href="{% url 'home' %}">Home</a>
+                                </span>
+                                <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                                <span property="itemListElement" typeof="ListItem">About Us</span>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="breadcrumb__shape-wrap">
+                <img src="{% static 'img/others/breadcrumb_shape01.svg'%}" alt="img" class="alltuchtopdown">
+                <img src="{% static 'img/others/breadcrumb_shape02.svg'%}" alt="img" data-aos="fade-right" data-aos-delay="300">
+                <img src="{% static 'img/others/breadcrumb_shape03.svg'%}" alt="img" data-aos="fade-up" data-aos-delay="400">
+                <img src="{% static 'img/others/breadcrumb_shape04.svg'%}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
+                <img src="{% static 'img/others/breadcrumb_shape05.svg'%}" alt="img" data-aos="fade-left" data-aos-delay="400">
+            </div>
+        </section>
+        <!-- breadcrumb-area-end -->
+
+        <!-- instructor-area -->
+        <section class="instructor__area">
+            <div class="container">
+                <div class="row">
+                    {% for instructor in instructors %}
+                        <div class="col-xl-4 col-sm-6">
+                            <div class="instructor__item">
+                                <div class="instructor__thumb">
+                                    <a href="{% url 'instructor-detail' pk=instructor.pk %}">
+                                        <img src="{{ instructor.instructor_profile.url }}" alt="{{ instructor.user.username }}">
+                                    </a>
+                                </div>
+                                <div class="instructor__content">
+                                    <h2 class="title"><a href="{% url 'instructor-detail' pk=instructor.pk %}">{{ instructor.user.username }}</a></h2>
+                                    <span class="designation">{{ instructor.designation }}</span>
+                                    <div class="instructor__social">
+                                        <ul class="list-wrap">
+                                            {% if instructor.facebook_link %}
+                                                <li><a href="{{ instructor.facebook_link }}"><i class="fab fa-facebook-f"></i></a></li>
+                                            {% endif %}
+                                            {% if instructor.linkedin_link %}
+                                                <li><a href="{{ instructor.linkedin_link }}"><i class="fab fa-linkedin-in"></i></a></li>
+                                            {% endif %}
+                                            {% if instructor.instagram_link %}
+                                                <li><a href="{{ instructor.instagram_link }}"><i class="fab fa-instagram"></i></a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        
+        <!-- instructor-area-end -->
+
+    </main>
+    <!-- main-area-end -->
+
+
+    {% endblock content %}

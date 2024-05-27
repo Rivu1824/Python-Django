@@ -1,0 +1,80 @@
+{% extends 'header-footer.html' %}
+{% load static %}
+{% block title %}bdtechnicalschools/login{% endblock title %}
+
+{% block content %}
+
+    <main class="main-area fix">
+
+                <!-- breadcrumb-area -->
+                <section class="breadcrumb__area breadcrumb__bg" data-background="{% static 'img/bg/breadcrumb_bg.jpg'%}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="breadcrumb__content">
+                                    <h3 class="title">Log-In Here...</h3>
+                                    <nav class="breadcrumb">
+                                        <span property="itemListElement" typeof="ListItem">
+                                            <a href="{% url 'home' %}">Home</a>
+                                        </span>
+                                        <span class="breadcrumb-separator"><i class="fas fa-angle-right"></i></span>
+                                        <span property="itemListElement" typeof="ListItem">Contact</span>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="breadcrumb__shape-wrap">
+                        <img src="{% static 'img/others/breadcrumb_shape01.svg'%}" alt="img" class="alltuchtopdown">
+                        <img src="{% static 'img/others/breadcrumb_shape02.svg'%}" alt="img" data-aos="fade-right" data-aos-delay="300">
+                        <img src="{% static 'img/others/breadcrumb_shape03.svg'%}" alt="img" data-aos="fade-up" data-aos-delay="400">
+                        <img src="{% static 'img/others/breadcrumb_shape04.svg'%}" alt="img" data-aos="fade-down-left" data-aos-delay="400">
+                        <img src="{% static 'img/others/breadcrumb_shape05.svg'%}" alt="img" data-aos="fade-left" data-aos-delay="400">
+                    </div>
+                </section>
+                <!-- breadcrumb-area-end -->
+
+        <!-- singUp-area -->
+        <section class="singUp-area section-py-120">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-8">
+                        <div class="singUp-wrap">
+                            {% if messages %}
+                            <ul>
+                              {% for message in messages %}
+                              <li class="{% if message.tags %}alert {{ message.tags }}{% else %}text-info{% endif %}">
+                                {{ message }}
+                              </li>
+                              {% endfor %}
+                            </ul>
+                            {% endif %}
+                            <h2 class="title">Welcome back!</h2>
+                            <p>Hey there! Ready to log in? Just enter your username and password below and you'll be back in action in no time. Let's go!</p>
+                            <div class="account__divider">
+                            </div>
+                            <form action="{% url 'login' %}" method="post" class="account__form">
+                                {% csrf_token %}
+                                <div class="form-grp">
+                                    <label for="username">username</label>
+                                    <input id="username" type="text" name="username" class="form-control" placeholder="Username" required>
+                                </div>
+                                <div class="form-grp">
+                                    <label for="password">Password</label>
+                                    <input id="password-field" type="password" name="password" class="form-control" placeholder="Password" required>
+                                </div>
+                                <button type="submit" class="btn btn-two arrow-btn">Sign In<img src="{% static 'img/icons/right_arrow.svg'%}" alt="img" class="injectable"></button>
+                            </form>
+                            <div class="account__switch">
+                                <p>Don't have an account?<a href="{% url 'register' %}">Sign Up</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- singUp-area-end -->
+
+    </main>
+    <!-- main-area-end -->
+    {% endblock content %}
